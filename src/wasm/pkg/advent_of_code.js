@@ -197,6 +197,17 @@ export function day02(input) {
     return takeObject(ret);
 }
 
+/**
+* @param {string} input
+* @returns {any}
+*/
+export function day03(input) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.day03(ptr0, len0);
+    return takeObject(ret);
+}
+
 async function load(module, imports) {
     if (typeof Response === 'function' && module instanceof Response) {
         if (typeof WebAssembly.instantiateStreaming === 'function') {

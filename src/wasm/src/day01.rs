@@ -33,10 +33,8 @@ pub fn run(input: &str) -> Output {
         .to_string()
         .to_owned();
 
-    let output = Output {
+    return Output {
         part1: part1,
         part2: part2,
     };
-
-    return output;
 }

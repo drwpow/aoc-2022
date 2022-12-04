@@ -13,30 +13,30 @@ enum Outcome {
 }
 
 fn parse_play(play: &char) -> Option<Play> {
-    match play {
-        'A' | 'X' => return Some(Play::Rock),
-        'B' | 'Y' => return Some(Play::Paper),
-        'C' | 'Z' => return Some(Play::Scissors),
-        _ => return None,
-    }
+    return match play {
+        'A' | 'X' => Some(Play::Rock),
+        'B' | 'Y' => Some(Play::Paper),
+        'C' | 'Z' => Some(Play::Scissors),
+        _ => None,
+    };
 }
 
 fn win_lose_draw(opponent: &Play, player: &Play) -> Outcome {
-    match opponent {
+    return match opponent {
         Play::Rock => match player {
-            Play::Rock => return Outcome::Draw,
-            Play::Paper => return Outcome::Win,
-            Play::Scissors => return Outcome::Lose,
+            Play::Rock => Outcome::Draw,
+            Play::Paper => Outcome::Win,
+            Play::Scissors => Outcome::Lose,
         },
         Play::Paper => match player {
-            Play::Rock => return Outcome::Lose,
-            Play::Paper => return Outcome::Draw,
-            Play::Scissors => return Outcome::Win,
+            Play::Rock => Outcome::Lose,
+            Play::Paper => Outcome::Draw,
+            Play::Scissors => Outcome::Win,
         },
         Play::Scissors => match player {
-            Play::Rock => return Outcome::Win,
-            Play::Paper => return Outcome::Lose,
-            Play::Scissors => return Outcome::Draw,
+            Play::Rock => Outcome::Win,
+            Play::Paper => Outcome::Lose,
+            Play::Scissors => Outcome::Draw,
         },
     };
 }
@@ -143,10 +143,8 @@ pub fn run(input: &str) -> Output {
         }
     }
 
-    let output = Output {
+    return Output {
         part1: part1.to_string().to_owned(),
         part2: part2.to_string().to_owned(),
     };
-
-    return output;
 }
