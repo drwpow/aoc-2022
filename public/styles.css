@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #0e1523;
+  color: #fff;
+  font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  font-size: 100%;
+  line-height: 1;
+}
+
+:root {
+  --border: rgba(255, 255, 255, 0.4);
+}
+
+.wrapper {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
+}
+
+.cal {
+  border-right: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+}
+
+.cal > * {
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.cal-heading {
+  border-bottom-color: currentColor;
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  text-align: center;
+}
+
+.day {
+  counter-increment: day;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem 1rem;
+  position: relative;
+}
+
+.day::before {
+  content: counter(day);
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.day-solutions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.day-solutions dt,
+.day-solutions dd {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "advent-of-code",
+  "collaborators": [
+    "Drew Powers <drew@pow.rs>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "advent_of_code_bg.wasm",
+    "advent_of_code.js",
+    "advent_of_code.d.ts"
+  ],
+  "module": "advent_of_code.js",
+  "types": "advent_of_code.d.ts",
+  "sideEffects": false
+}
