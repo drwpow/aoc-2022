@@ -3,30 +3,26 @@ import { signal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 import Timer from "../lib/timer.js";
 import * as wasm from "../wasm/pkg/advent_of_code.js";
+import Day from "./Day.js";
 
-const output = signal({ part1: "", part2: "" });
+const part1 = signal("");
+const part2 = signal("");
+const execTime = signal(0);
 const timer = new Timer();
 
-function Day03() {
+export default function Day03() {
   useEffect(() => {
     timer.start();
-    output.value = wasm.day03(input);
-    console.log(`Day 03 ran in ${timer.tick()}ms`);
+    const output = wasm.day03(input);
+    part1.value = output.part1;
+    part2.value = output.part2;
+    execTime.value = timer.tick();
   }, []);
 
   return (
-    <div class="day">
-      <dl class="day-solutions">
-        <dt>Part 1</dt>
-        <dd>{output.value.part1}</dd>
-        <dt>Part 2</dt>
-        <dd>{output.value.part2}</dd>
-      </dl>
-    </div>
+    <Day part1={part1.value} part2={part2.value} execTime={execTime.value} />
   );
 }
-
-export default Day03;
 
 const input = `hqBqJsqHhHvhHHqlBvlfpHQQwLVzVwtVzjzttjQVSjMjwL
 gRTRnCRsFNGbTzLjwcSTMmSz

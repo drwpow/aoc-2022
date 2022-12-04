@@ -10,7 +10,7 @@ pub fn run(input: &str) -> Output {
         let item_list = elf.split("\n");
         let mut calorie_list: Vec<i32> = Vec::new();
         for item in item_list {
-            let calorie_count: i32 = item.parse().unwrap();
+            let calorie_count = item.parse::<i32>().unwrap();
             calorie_list.push(calorie_count);
         }
         calories_list.push(calorie_list);
@@ -24,8 +24,6 @@ pub fn run(input: &str) -> Output {
 
     // sort
     calorie_sums.sort_by(|a, b| b.cmp(a));
-
-    // part 1
     let part1 = calorie_sums[0].to_string().to_owned();
 
     // part 2

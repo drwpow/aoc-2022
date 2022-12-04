@@ -15,6 +15,11 @@ export function day02(input: string): any;
 * @returns {any}
 */
 export function day03(input: string): any;
+/**
+* @param {string} input
+* @returns {any}
+*/
+export function day04(input: string): any;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -23,6 +28,7 @@ export interface InitOutput {
   readonly day01: (a: number, b: number) => number;
   readonly day02: (a: number, b: number) => number;
   readonly day03: (a: number, b: number) => number;
+  readonly day04: (a: number, b: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }

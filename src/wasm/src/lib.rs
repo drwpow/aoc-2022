@@ -11,6 +11,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 #[wasm_bindgen]
 extern "C" {
@@ -38,5 +39,11 @@ pub fn day02(input: &str) -> JsValue {
 #[wasm_bindgen]
 pub fn day03(input: &str) -> JsValue {
     let output = day03::run(input);
+    serde_wasm_bindgen::to_value(&output).unwrap()
+}
+
+#[wasm_bindgen]
+pub fn day04(input: &str) -> JsValue {
+    let output = day04::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }
