@@ -4,6 +4,7 @@ import { Suspense, lazy } from "preact/compat";
 import init from "./wasm/pkg/advent_of_code.js";
 
 const Day01 = lazy(() => import("./components/Day01.js"));
+const Day02 = lazy(() => import("./components/Day02.js"));
 
 const status = signal<"READY" | "LOADING" | "SUCCESS">("READY");
 
@@ -34,7 +35,9 @@ function App() {
           <Suspense fallback="">
             <Day01 />
           </Suspense>
-          <div class="day"></div>
+          <Suspense fallback="">
+            <Day02 />
+          </Suspense>
           <div class="day"></div>
         </div>
       )}

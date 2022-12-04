@@ -13,3 +13,10 @@ npm run dev
 ```
 
 See the answers at `localhost:3000`
+
+## Progress
+
+| Day  | Part 1 | Part 2 |
+| :--- | :----: | :----: |
+| `01` |   ⭐   |   ⭐   |
+| `02` |   ⭐   |   ⭐   |

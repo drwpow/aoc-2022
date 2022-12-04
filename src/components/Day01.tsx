@@ -1,15 +1,17 @@
 import { h } from "preact";
 import { signal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
+import Timer from "../lib/timer.js";
 import * as wasm from "../wasm/pkg/advent_of_code.js";
 
 const output = signal({ part1: "", part2: "" });
+const timer = new Timer();
 
 function Day01() {
   useEffect(() => {
-    const start = performance.now();
+    timer.start();
     output.value = wasm.day01(input);
-    console.log(`Day 01 ran in ${Math.round(performance.now() - start)}ms`);
+    console.log(`Day 01 ran in ${timer.tick()}ms`);
   }, []);
 
   return (
