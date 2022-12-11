@@ -64,7 +64,7 @@ fn predict_play(play: &Play, outcome: &Outcome) -> Play {
 pub fn run(input: &str) -> Output {
     // part 1
     let mut part1: i32 = 0;
-    for ln in input.trim().split("\n") {
+    for ln in input.trim().lines() {
         let opponent_code = match ln.chars().nth(0) {
             None => continue,
             Some(code) => code,
@@ -104,7 +104,7 @@ pub fn run(input: &str) -> Output {
 
     // part 2
     let mut part2: i32 = 0;
-    for ln in input.trim().split("\n") {
+    for ln in input.trim().lines() {
         let opponent_code = match ln.chars().nth(0) {
             None => continue,
             Some(code) => code,

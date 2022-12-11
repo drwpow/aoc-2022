@@ -1,9 +1,9 @@
 mod utils;
 
+use utils::set_panic_hook;
 use wasm_bindgen::prelude::*;
 
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
+// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global allocator.
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -12,6 +12,7 @@ mod day01;
 mod day02;
 mod day03;
 mod day04;
+mod day05;
 
 #[wasm_bindgen]
 extern "C" {
@@ -26,24 +27,42 @@ pub struct Output {
 
 #[wasm_bindgen]
 pub fn day01(input: &str) -> JsValue {
+    set_panic_hook();
     let output = day01::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }
 
 #[wasm_bindgen]
 pub fn day02(input: &str) -> JsValue {
+    set_panic_hook();
     let output = day02::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }
 
 #[wasm_bindgen]
 pub fn day03(input: &str) -> JsValue {
+    set_panic_hook();
     let output = day03::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }
 
 #[wasm_bindgen]
 pub fn day04(input: &str) -> JsValue {
+    set_panic_hook();
     let output = day04::run(input);
+    serde_wasm_bindgen::to_value(&output).unwrap()
+}
+
+#[derive(serde::Serialize, serde::Deserialize)]
+pub struct InputDay05 {
+    stacks: [Vec<String>; 9],
+    instructions: String,
+}
+
+#[wasm_bindgen]
+pub fn day05(input_raw: JsValue) -> JsValue {
+    set_panic_hook();
+    let input: InputDay05 = serde_wasm_bindgen::from_value(input_raw).unwrap();
+    let output: Output = day05::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }

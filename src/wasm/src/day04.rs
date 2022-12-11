@@ -4,7 +4,7 @@ pub fn run(input: &str) -> Output {
     let mut overlap_count: i32 = 0;
     let mut partial_overlap_count: i32 = 0;
 
-    for assignment in input.trim().split("\n") {
+    for assignment in input.trim().lines() {
         let ranges = parse_assignment(&assignment);
         let low_a = ranges[0];
         let high_a = ranges[1];

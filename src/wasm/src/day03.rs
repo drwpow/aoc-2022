@@ -3,7 +3,7 @@ use crate::Output;
 pub fn run(input: &str) -> Output {
     // part 1
     let mut part1: i32 = 0;
-    for rucksack in input.trim().split("\n") {
+    for rucksack in input.trim().lines() {
         let end = rucksack.len();
         let mid = end / 2;
         let matches = compare_compartments(&rucksack[..mid], &rucksack[mid..end]);
