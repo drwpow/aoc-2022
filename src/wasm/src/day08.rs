@@ -4,42 +4,82 @@ pub fn run(input: &str) -> Output {
     let trees = parse_input(input);
 
     // part 1
-    let mut visible: Vec<[usize; 2]> = Vec::new();
-    let mut invisible: Vec<[usize; 2]> = Vec::new();
+    let mut visibility_grid: Vec<Vec<u8>> = Vec::new();
+    let mut scenic_grid: Vec<Vec<u64>> = Vec::new();
     for (y, row) in trees.iter().enumerate() {
-        'scan: for (x, height) in row.iter().enumerate() {
-            // edge trees are all visible
-            if x == 0 || y == 0 || x == row.len() - 1 || y == trees.len() - 1 {
-                visible.push([x, y]);
-                continue;
-            }
-            // x-axis
-            for x2 in 0..trees[0].len() {
-                if x2 == x {
-                    continue; // skip same tree
-                }
-                if trees[y][x2] < *height {
-                    visible.push([x, y]);
-                    break 'scan;
-                }
-            }
-            // y-axis
-            for y2 in 0..row.len() {
-                if y2 == y {
-                    continue; // skip same tree
-                }
-                if trees[y2][x] < *height {
-                    visible.push([x, y]);
-                    break 'scan;
+        let mut vis_row: Vec<u8> = Vec::new();
+        let mut scenic_row: Vec<u64> = Vec::new();
+        for (x, height) in row.iter().enumerate() {
+            // number of edges this tree is visible from
+            // 4 = visible from all 4 edges
+            // 0 = not visible from any edge
+            let mut visibility: u8 = 4;
+            // North
+            // note: counting must always start FROM origin, hence .rev()
+            let mut n_score: u64 = 0;
+            for y2 in (0..y).rev() {
+                n_score += 1;
+                if trees[y2][x] >= *height {
+                    visibility -= 1;
+                    break;
                 }
             }
-            invisible.push([x, y]);
+            // South
+            let mut s_score: u64 = 0;
+            for y2 in (y + 1)..trees.len() {
+                s_score += 1;
+                if trees[y2][x] >= *height {
+                    visibility -= 1;
+                    break;
+                }
+            }
+            // East
+            let mut e_score: u64 = 0;
+            for x2 in (0..x).rev() {
+                e_score += 1;
+                if trees[y][x2] >= *height {
+                    visibility -= 1;
+                    break;
+                }
+            }
+            // West
+            let mut w_score: u64 = 0;
+            for x2 in (x + 1)..trees[0].len() {
+                w_score += 1;
+                if trees[y][x2] >= *height {
+                    visibility -= 1;
+                    break;
+                }
+            }
+            vis_row.push(visibility);
+            scenic_row.push(n_score * s_score * e_score * w_score);
+        }
+        visibility_grid.push(vis_row);
+        scenic_grid.push(scenic_row);
+    }
+
+    let mut visible_count = 0;
+    for row in &visibility_grid {
+        for visibility in row {
+            if visibility > &0 {
+                visible_count += 1;
+            }
+        }
+    }
+
+    // part 2
+    let mut highest_scenic_score: u64 = 0;
+    for row in &scenic_grid {
+        for scenic_score in row {
+            if scenic_score > &highest_scenic_score {
+                highest_scenic_score = *scenic_score;
+            }
         }
     }
 
     return Output {
-        part1: visible.len().to_string(),
-        part2: "".to_owned(),
+        part1: visible_count.to_string(),
+        part2: highest_scenic_score.to_string(),
     };
 }
 
