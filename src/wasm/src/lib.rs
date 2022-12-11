@@ -13,6 +13,7 @@ mod day02;
 mod day03;
 mod day04;
 mod day05;
+mod day06;
 
 #[wasm_bindgen]
 extern "C" {
@@ -55,7 +56,7 @@ pub fn day04(input: &str) -> JsValue {
 
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct InputDay05 {
-    stacks: [Vec<String>; 9],
+    stacks: [Vec<char>; 9],
     instructions: String,
 }
 
@@ -64,5 +65,12 @@ pub fn day05(input_raw: JsValue) -> JsValue {
     set_panic_hook();
     let input: InputDay05 = serde_wasm_bindgen::from_value(input_raw).unwrap();
     let output: Output = day05::run(input);
+    serde_wasm_bindgen::to_value(&output).unwrap()
+}
+
+#[wasm_bindgen]
+pub fn day06(input: &str) -> JsValue {
+    set_panic_hook();
+    let output: Output = day06::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }

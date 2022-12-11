@@ -14,7 +14,7 @@ pub fn run(input: InputDay05) -> Output {
     }
     let mut part_1 = "".to_owned();
     for stack in stacks {
-        part_1.push_str(stack.last().unwrap());
+        part_1.push(*stack.last().unwrap());
     }
 
     // part 2
@@ -26,7 +26,7 @@ pub fn run(input: InputDay05) -> Output {
     }
     let mut part_2 = "".to_owned();
     for stack in stacks_2 {
-        part_2.push_str(stack.last().unwrap());
+        part_2.push(*stack.last().unwrap());
     }
 
     return Output {

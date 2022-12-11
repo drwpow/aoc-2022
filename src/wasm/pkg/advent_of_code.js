@@ -241,6 +241,17 @@ export function day05(input_raw) {
     return takeObject(ret);
 }
 
+/**
+* @param {string} input
+* @returns {any}
+*/
+export function day06(input) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.day06(ptr0, len0);
+    return takeObject(ret);
+}
+
 function handleError(f, args) {
     try {
         return f.apply(this, args);
@@ -383,6 +394,18 @@ function getImports() {
     }, arguments) };
     imports.wbg.__wbg_new_0b9bfdd97583284e = function() {
         const ret = new Object();
+        return addHeapObject(ret);
+    };
+    imports.wbg.__wbindgen_is_string = function(arg0) {
+        const ret = typeof(getObject(arg0)) === 'string';
+        return ret;
+    };
+    imports.wbg.__wbg_length_f2ab5db52e68a619 = function(arg0) {
+        const ret = getObject(arg0).length;
+        return ret;
+    };
+    imports.wbg.__wbg_codePointAt_4e75511c39fe8398 = function(arg0, arg1) {
+        const ret = getObject(arg0).codePointAt(arg1 >>> 0);
         return addHeapObject(ret);
     };
     imports.wbg.__wbg_isArray_27c46c67f498e15d = function(arg0) {
