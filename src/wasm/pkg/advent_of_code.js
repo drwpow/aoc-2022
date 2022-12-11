@@ -252,6 +252,28 @@ export function day06(input) {
     return takeObject(ret);
 }
 
+/**
+* @param {string} input
+* @returns {any}
+*/
+export function day07(input) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.day07(ptr0, len0);
+    return takeObject(ret);
+}
+
+/**
+* @param {string} input
+* @returns {any}
+*/
+export function day08(input) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.day08(ptr0, len0);
+    return takeObject(ret);
+}
+
 function handleError(f, args) {
     try {
         return f.apply(this, args);

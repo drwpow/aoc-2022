@@ -93,6 +93,7 @@ code {
 
 .day-solutions dd {
   font-family: var(--font-mono);
+  white-space: pre;
 }
 
 .day-exec {
