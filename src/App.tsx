@@ -11,6 +11,7 @@ const Day05 = lazy(() => import("./components/Day05.js"));
 const Day06 = lazy(() => import("./components/Day06.js"));
 const Day07 = lazy(() => import("./components/Day07.js"));
 const Day08 = lazy(() => import("./components/Day08.js"));
+const Day09 = lazy(() => import("./components/Day09.js"));
 
 const status = signal<"READY" | "LOADING" | "SUCCESS">("READY");
 
@@ -62,7 +63,9 @@ function App() {
           <Suspense fallback="">
             <Day08 />
           </Suspense>
-          <div></div>
+          <Suspense fallback="">
+            <Day09 />
+          </Suspense>
           <div></div>
           <div></div>
           <div></div>

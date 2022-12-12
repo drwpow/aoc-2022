@@ -16,6 +16,7 @@ mod day05;
 mod day06;
 mod day07;
 mod day08;
+mod day09;
 
 #[wasm_bindgen]
 extern "C" {
@@ -88,5 +89,12 @@ pub fn day07(input: &str) -> JsValue {
 pub fn day08(input: &str) -> JsValue {
     set_panic_hook();
     let output: Output = day08::run(input);
+    serde_wasm_bindgen::to_value(&output).unwrap()
+}
+
+#[wasm_bindgen]
+pub fn day09(input: &str) -> JsValue {
+    set_panic_hook();
+    let output: Output = day09::run(input);
     serde_wasm_bindgen::to_value(&output).unwrap()
 }
